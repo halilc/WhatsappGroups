@@ -17,8 +17,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        viewCategories = (ImageButton)  findViewById(R.id.viewCategories);
-        addGroup = (ImageButton)  findViewById(R.id.addGroup);
+        viewCategories = findViewById(R.id.viewCategories);
+        addGroup = findViewById(R.id.addGroup);
         addGroup.setOnClickListener(new View.OnClickListener() {
 
             @Override

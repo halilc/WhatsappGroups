@@ -30,48 +30,8 @@ public class viewCategories extends AppCompatActivity {
     CollapsingToolbarLayout collapsingToolbarLayoutAndroid;
     CoordinatorLayout rootLayoutAndroid;
     GridView gridView;
-    Context context;
-    ArrayList arrayList;
-    Adapter mAdapter;
-    ArrayList mItems = new ArrayList<String>();
-    public static String[] gridViewStrings = {
-            "All",
-            "Buy & Sell",
-            "Animal & Pets",
-            "Art & Photography",
-            "Business",
-            "Community",
-            "Fan Clubs",
-            "Food",
-            "Funny",
-            "Games",
-            "Dating & Love",
-            "Health & Fitness",
-            "Politics & News",
-            "Relationships",
-            "School & Education",
-            "Science & Tech",
-            "Sports",
-            "Travel & Places",
-            "Medicals",
-    };
-    public static int[] gridViewImages = {
-            R.drawable.all,
-            R.drawable.buy,
-            R.drawable.animal,
-            R.drawable.art,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-    };
+    ArrayList<Category> mItems = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,15 +39,36 @@ public class viewCategories extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         gridView = (GridView) findViewById(R.id.grid);
-        gridView.setAdapter(new CustomAndroidGridViewAdapter(this, gridViewStrings, gridViewImages));
+
         initInstances();
+
+        mItems.add(new Category("All", getResources().getDrawable(R.drawable.all)));
+        mItems.add(new Category("Buy & Sell", getResources().getDrawable(R.drawable.buy)));
+        mItems.add(new Category("Animal & Pets", getResources().getDrawable(R.drawable.animal)));
+        mItems.add(new Category("Art & Photography", getResources().getDrawable(R.drawable.art)));
+        mItems.add(new Category("Business", getResources().getDrawable(R.drawable.all)));
+        mItems.add(new Category("Community", getResources().getDrawable(R.drawable.all)));
+        mItems.add(new Category("Fan Clubs", getResources().getDrawable(R.drawable.all)));
+        mItems.add(new Category("Food", getResources().getDrawable(R.drawable.all)));
+        mItems.add(new Category("Funny", getResources().getDrawable(R.drawable.all)));
+        mItems.add(new Category("Games", getResources().getDrawable(R.drawable.all)));
+        mItems.add(new Category("Dating & Love", getResources().getDrawable(R.drawable.all)));
+        mItems.add(new Category("Health & Fitness", getResources().getDrawable(R.drawable.all)));
+        mItems.add(new Category("Politics & News", getResources().getDrawable(R.drawable.all)));
+        mItems.add(new Category("Relationships", getResources().getDrawable(R.drawable.all)));
+        mItems.add(new Category("School & Education", getResources().getDrawable(R.drawable.all)));
+        mItems.add(new Category("Science & Tech", getResources().getDrawable(R.drawable.all)));
+        mItems.add(new Category("Sports", getResources().getDrawable(R.drawable.all)));
+        mItems.add(new Category("Travel & Places", getResources().getDrawable(R.drawable.all)));
+        mItems.add(new Category("Medicals", getResources().getDrawable(R.drawable.all)));
+
+        gridView.setAdapter(new CustomAndroidGridViewAdapter(this, mItems));
+
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //Toast.makeText(viewCategories.this,String.valueOf(position),Toast.LENGTH_SHORT).show();
+                
                 new MaterialDialog.Builder(viewCategories.this)
-                        .title(gridViewStrings[position])
-                        .items(gridViewStrings)
                         .itemsCallback(new MaterialDialog.ListCallback() {
                             @Override
                             public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
@@ -96,15 +77,6 @@ public class viewCategories extends AppCompatActivity {
                         })
                         .show();
 
-                /*
-                switch (position) {
-                    case 0:
-                       // Log.e("ewfew",);
-                        break;
-                    case 1:
-                        break;
-
-                }*/
             }
         });
     }

@@ -18,8 +18,7 @@
             <ImageView
                 android:id="@+id/gridview_image"
                 android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@mipmap/ic_launcher" />
+                android:layout_height="80dp" />
 
             <TextView
                 android:id="@+id/gridview_text"
