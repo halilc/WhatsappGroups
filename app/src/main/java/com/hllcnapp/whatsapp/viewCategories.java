@@ -24,11 +24,9 @@ public class viewCategories extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.viewcategories);
-        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         gridView = findViewById(R.id.grid);
 
-        initInstances();
 
         mItems.add(new Category("All", getResources().getDrawable(R.drawable.all)));
         mItems.add(new Category("Buy & Sell", getResources().getDrawable(R.drawable.buy)));
@@ -68,11 +66,6 @@ public class viewCategories extends AppCompatActivity {
             }
         });
 
-    }
-    private void initInstances() {
-        rootLayoutAndroid = findViewById(R.id.android_coordinator_layout);
-        collapsingToolbarLayoutAndroid = findViewById(R.id.collapsing_toolbar_android_layout);
-        collapsingToolbarLayoutAndroid.setTitle("All Categories");
     }
 
 }
