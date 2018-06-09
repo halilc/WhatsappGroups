@@ -50,9 +50,10 @@ public class CustomAndroidGridViewAdapter extends BaseAdapter {
             grid = new View(mContext);
             grid = inflater.inflate(R.layout.gridview_custom_layout, null);
             TextView textView = (TextView) grid.findViewById(R.id.gridview_text);
-            ImageView imageView = (ImageView)grid.findViewById(R.id.gridview_image);
+            ImageView imageView = (ImageView) grid.findViewById(R.id.gridview_image);
             textView.setText(string[p]);
-            imageView.setImageResource(Imageid[p]);
+            imageView.setImageResource(R.drawable.animal);
+
         } else {
             grid = (View) convertView;
         }

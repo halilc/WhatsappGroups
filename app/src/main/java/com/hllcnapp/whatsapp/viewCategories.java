@@ -33,7 +33,7 @@ public class viewCategories extends AppCompatActivity {
     Context context;
     ArrayList arrayList;
     Adapter mAdapter;
-    ArrayList mItems = new ArrayList<String>();;
+    ArrayList mItems = new ArrayList<String>();
     public static String[] gridViewStrings = {
             "All",
             "Buy & Sell",
