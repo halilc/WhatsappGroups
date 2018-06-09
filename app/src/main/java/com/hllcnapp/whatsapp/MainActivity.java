@@ -16,10 +16,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        VideoView videoview = (VideoView) findViewById(R.id.videoView);
-        Uri uri = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.a);
-        videoview.setVideoURI(uri);
-        videoview.start();
+
         viewCategories = (ImageButton)  findViewById(R.id.viewCategories);
         addGroup = (ImageButton)  findViewById(R.id.addGroup);
         addGroup.setOnClickListener(new View.OnClickListener() {

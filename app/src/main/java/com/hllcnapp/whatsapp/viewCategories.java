@@ -35,18 +35,33 @@ public class viewCategories extends AppCompatActivity {
     Adapter mAdapter;
     ArrayList mItems = new ArrayList<String>();;
     public static String[] gridViewStrings = {
-            "Android",
-            "Java",
-            "GridView",
-            "ListView",
-            "Adapter",
-            "Custom GridView",
-            "Material",
-            "XML",
-            "Code",
-
+            "All",
+            "Buy & Sell",
+            "Animal & Pets",
+            "Art & Photography",
+            "Business",
+            "Community",
+            "Fan Clubs",
+            "Food",
+            "Funny",
+            "Games",
+            "Dating & Love",
+            "Health & Fitness",
+            "Politics & News",
+            "Relationships",
+            "School & Education",
+            "Science & Tech",
+            "Sports",
+            "Travel & Places",
+            "Medicals",
     };
     public static int[] gridViewImages = {
+            R.drawable.all,
+            R.drawable.buy,
+            R.drawable.animal,
+            R.drawable.art,
+            R.mipmap.ic_launcher,
+            R.mipmap.ic_launcher,
             R.mipmap.ic_launcher,
             R.mipmap.ic_launcher,
             R.mipmap.ic_launcher,
@@ -66,9 +81,6 @@ public class viewCategories extends AppCompatActivity {
         gridView = (GridView) findViewById(R.id.grid);
         gridView.setAdapter(new CustomAndroidGridViewAdapter(this, gridViewStrings, gridViewImages));
         initInstances();
-        mItems.add("xxx");
-        mItems.add("xxxx");
-        mItems.add("xxxxx");
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -79,7 +91,7 @@ public class viewCategories extends AppCompatActivity {
                         .itemsCallback(new MaterialDialog.ListCallback() {
                             @Override
                             public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
-                                Log.e("CLİCKED",text.toString());
+                         Log.e("CLİCKED",text.toString());
                             }
                         })
                         .show();
@@ -99,7 +111,7 @@ public class viewCategories extends AppCompatActivity {
     private void initInstances() {
         rootLayoutAndroid = (CoordinatorLayout) findViewById(R.id.android_coordinator_layout);
         collapsingToolbarLayoutAndroid = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_android_layout);
-        collapsingToolbarLayoutAndroid.setTitle("Material Grid");
+        collapsingToolbarLayoutAndroid.setTitle("All Categories");
     }
 
 }
