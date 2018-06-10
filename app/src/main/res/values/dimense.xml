@@ -6,4 +6,6 @@
 
     <dimen name="app_bar_height">256dp</dimen>
     <dimen name="expanded_toolbar_title_margin_start">64dp</dimen>
+
+    <dimen name="text_size">18sp</dimen>
 </resources>

@@ -44,21 +44,21 @@ public class viewCategories extends AppCompatActivity {
         mItems.add(new Category("Buy & Sell", getResources().getDrawable(R.drawable.buy)));
         mItems.add(new Category("Animal & Pets", getResources().getDrawable(R.drawable.animal)));
         mItems.add(new Category("Art & Photography", getResources().getDrawable(R.drawable.art)));
-        mItems.add(new Category("Business", getResources().getDrawable(R.drawable.all)));
-        mItems.add(new Category("Community", getResources().getDrawable(R.drawable.all)));
-        mItems.add(new Category("Fan Clubs", getResources().getDrawable(R.drawable.all)));
-        mItems.add(new Category("Food", getResources().getDrawable(R.drawable.all)));
-        mItems.add(new Category("Funny", getResources().getDrawable(R.drawable.all)));
-        mItems.add(new Category("Games", getResources().getDrawable(R.drawable.all)));
-        mItems.add(new Category("Dating & Love", getResources().getDrawable(R.drawable.all)));
-        mItems.add(new Category("Health & Fitness", getResources().getDrawable(R.drawable.all)));
-        mItems.add(new Category("Politics & News", getResources().getDrawable(R.drawable.all)));
-        mItems.add(new Category("Relationships", getResources().getDrawable(R.drawable.all)));
-        mItems.add(new Category("School & Education", getResources().getDrawable(R.drawable.all)));
-        mItems.add(new Category("Science & Tech", getResources().getDrawable(R.drawable.all)));
-        mItems.add(new Category("Sports", getResources().getDrawable(R.drawable.all)));
-        mItems.add(new Category("Travel & Places", getResources().getDrawable(R.drawable.all)));
-        mItems.add(new Category("Medicals", getResources().getDrawable(R.drawable.all)));
+        mItems.add(new Category("Business", getResources().getDrawable(R.drawable.business)));
+        mItems.add(new Category("Community", getResources().getDrawable(R.drawable.community)));
+        mItems.add(new Category("Fan Clubs", getResources().getDrawable(R.drawable.fun)));
+        mItems.add(new Category("Food", getResources().getDrawable(R.drawable.diet)));
+        mItems.add(new Category("Funny", getResources().getDrawable(R.drawable.amusement)));
+        mItems.add(new Category("Games", getResources().getDrawable(R.drawable.battle)));
+        mItems.add(new Category("Dating & Love", getResources().getDrawable(R.drawable.calendar)));
+        mItems.add(new Category("Health & Fitness", getResources().getDrawable(R.drawable.muscle)));
+        mItems.add(new Category("Politics & News", getResources().getDrawable(R.drawable.capitol)));
+        mItems.add(new Category("Relationships", getResources().getDrawable(R.drawable.relationship)));
+        mItems.add(new Category("School & Education", getResources().getDrawable(R.drawable.classroom)));
+        mItems.add(new Category("Science & Tech", getResources().getDrawable(R.drawable.biology)));
+        mItems.add(new Category("Sports", getResources().getDrawable(R.drawable.basketball)));
+        mItems.add(new Category("Travel & Places", getResources().getDrawable(R.drawable.travel)));
+        mItems.add(new Category("Medicals", getResources().getDrawable(R.drawable.hospital)));
 
         gridView.setAdapter(new CustomAndroidGridViewAdapter(this, mItems));
 
