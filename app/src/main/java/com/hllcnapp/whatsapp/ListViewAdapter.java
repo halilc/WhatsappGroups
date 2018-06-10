@@ -1,6 +1,8 @@
 package com.hllcnapp.whatsapp;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -47,7 +49,8 @@ public class ListViewAdapter extends BaseAdapter {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(activity, groups.get(i).getGroupUrl(), Toast.LENGTH_SHORT).show();
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(groups.get(i).getGroupUrl()));
+                activity.startActivity(browserIntent);
             }
         });
 

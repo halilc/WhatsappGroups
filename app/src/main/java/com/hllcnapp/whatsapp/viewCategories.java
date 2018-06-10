@@ -79,7 +79,7 @@ public class viewCategories extends AppCompatActivity {
 
                                 DocumentSnapshot snapshot = task.getResult().getDocuments().get(i);
 
-                                groups.add(new Group(snapshot.getString("name"), snapshot.getString("url"), snapshot.getString("type")));
+                                groups.add(new Group(snapshot.getString("name"), snapshot.getString("link"), snapshot.getString("type")));
 
                             }
 
