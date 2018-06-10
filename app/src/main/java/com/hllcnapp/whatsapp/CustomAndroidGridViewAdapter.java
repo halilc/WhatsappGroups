@@ -46,20 +46,11 @@ public class CustomAndroidGridViewAdapter extends BaseAdapter {
 
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        if (convertView == null) {
-
-            grid = inflater.inflate(R.layout.gridview_custom_layout, parent, false);
-            TextView textView = grid.findViewById(R.id.gridview_text);
-            ImageView imageView = grid.findViewById(R.id.gridview_image);
-            textView.setText(categories.get(p).getName());
-            imageView.setBackground(categories.get(p).getDrawable());
-
-        } else {
-
-            grid = (View) convertView;
-
-        }
-
+        grid = inflater.inflate(R.layout.gridview_custom_layout, parent, false);
+        TextView textView = grid.findViewById(R.id.gridview_text);
+        ImageView imageView = grid.findViewById(R.id.gridview_image);
+        textView.setText(categories.get(p).getName());
+        imageView.setBackground(categories.get(p).getDrawable());
 
         return grid;
     }
