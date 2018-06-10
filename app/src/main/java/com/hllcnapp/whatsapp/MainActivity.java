@@ -1,5 +1,6 @@
 package com.hllcnapp.whatsapp;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,31 +9,33 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    private ImageButton viewCategories;
-    private ImageButton addGroup;
+    private ImageButton viewCategoriesBtn;
+    private ImageButton addGroupBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        viewCategories = findViewById(R.id.viewCategories);
-        addGroup = findViewById(R.id.addGroup);
-        addGroup.setOnClickListener(new View.OnClickListener() {
+        viewCategoriesBtn = findViewById(R.id.viewCategories);
+        addGroupBtn = findViewById(R.id.addGroup);
+        addGroupBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(MainActivity.this, "addgorup", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(MainActivity.this, addGroup.class);
+                startActivity(intent);
 
             }
         });
-        viewCategories.setOnClickListener(new View.OnClickListener() {
+        viewCategoriesBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
                 Intent myIntent = new Intent(MainActivity.this, viewCategories.class);
                 MainActivity.this.startActivity(myIntent);
+
 
             }
         });
