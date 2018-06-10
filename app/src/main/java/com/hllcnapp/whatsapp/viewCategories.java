@@ -58,7 +58,7 @@ public class viewCategories extends AppCompatActivity {
         mItems.add(new Category("Science & Tech", getResources().getDrawable(R.drawable.biology)));
         mItems.add(new Category("Sports", getResources().getDrawable(R.drawable.basketball)));
         mItems.add(new Category("Travel & Places", getResources().getDrawable(R.drawable.travel)));
-        mItems.add(new Category("Medicals", getResources().getDrawable(R.drawable.hospital)));
+        //mItems.add(new Category("Medicals", getResources().getDrawable(R.drawable.hospital)));
 
         gridView.setAdapter(new CustomAndroidGridViewAdapter(this, mItems));
 
