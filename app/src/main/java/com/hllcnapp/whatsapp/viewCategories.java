@@ -1,24 +1,34 @@
 package com.hllcnapp.whatsapp;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
 public class viewCategories extends AppCompatActivity {
+
     Toolbar toolbar;
-    CollapsingToolbarLayout collapsingToolbarLayoutAndroid;
-    CoordinatorLayout rootLayoutAndroid;
     GridView gridView;
     ArrayList<Category> mItems = new ArrayList<>();
+    private FirebaseFirestore db;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +36,8 @@ public class viewCategories extends AppCompatActivity {
         setContentView(R.layout.viewcategories);
         setSupportActionBar(toolbar);
         gridView = findViewById(R.id.grid);
+        db = FirebaseFirestore.getInstance();
+        progressBar = findViewById(R.id.progressBar);
 
 
         mItems.add(new Category("All", getResources().getDrawable(R.drawable.all)));
@@ -52,16 +64,42 @@ public class viewCategories extends AppCompatActivity {
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                
-                new MaterialDialog.Builder(viewCategories.this)
-                        .itemsCallback(new MaterialDialog.ListCallback() {
-                            @Override
-                            public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
-                         Log.e("CLİCKED",text.toString());
+            public void onItemClick(final AdapterView<?> parent, View view, final int position, long id) {
+                progressBar.setVisibility(View.VISIBLE);
+
+                final ArrayList<Group> groups = new ArrayList<>();
+
+                db.collection(mItems.get(position).getName()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                        if(task.isSuccessful()) {
+
+                            for(int i=0; i < task.getResult().size(); i++){
+
+                                DocumentSnapshot snapshot = task.getResult().getDocuments().get(i);
+
+                                groups.add(new Group(snapshot.getString("name"), snapshot.getString("url"), snapshot.getString("type")));
+
                             }
-                        })
-                        .show();
+
+                        }
+
+                        progressBar.setVisibility(View.GONE);
+
+                        AlertDialog.Builder dialog = new AlertDialog.Builder(viewCategories.this);
+
+                        View view = getLayoutInflater().inflate(R.layout.dialog_view, parent, false);
+                        dialog.setView(view);
+                        ListView listView = view.findViewById(R.id.groupsList);
+                        ListViewAdapter adapter = new ListViewAdapter(viewCategories.this, groups);
+                        listView.setAdapter(adapter);
+
+                        dialog.setTitle(mItems.get(position).getName());
+                        dialog.show();
+
+                    }
+                });
 
             }
         });
