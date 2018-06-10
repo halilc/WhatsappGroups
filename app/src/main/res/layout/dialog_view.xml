@@ -9,6 +9,9 @@
         android:id="@+id/groupsList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#10b0cc"
+        android:divider="#FFCC00"
+        android:dividerHeight="7px"
         android:layout_margin="5dp"/>
 
 </LinearLayout>
