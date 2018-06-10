@@ -1,6 +1,5 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/android_coordinator_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -8,10 +7,9 @@
         android:id="@+id/grid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:columnWidth="100dp"
         android:gravity="center"
-        android:listSelector="#00000000"
-        android:numColumns="auto_fit" />
+        android:numColumns="3"
+        android:layout_above="@id/banner"/>
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -20,5 +18,13 @@
         android:layout_centerInParent="true"
         android:visibility="gone"/>
 
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/banner"
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"/>
 
 </RelativeLayout>

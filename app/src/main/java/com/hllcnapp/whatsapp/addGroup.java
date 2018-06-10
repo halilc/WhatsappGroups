@@ -3,7 +3,6 @@ package com.hllcnapp.whatsapp;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -11,6 +10,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -28,7 +31,8 @@ public class addGroup extends AppCompatActivity {
     private String[] spinnerCategory = {"Categories","All", "Buy&Sell", "Animals&Pets", "Art&Photography", "Business", "Community",
                                         "Fan Clubs", "Food", "Funny", "Games", "Dating&Love", "Health&Fitness",
                                         "Politics&News", "Relationships", "School&Education", "Science&Tech", "Sports", "Travel&Places"};
-
+    private AdView adView;
+    private InterstitialAd interstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,24 @@ public class addGroup extends AppCompatActivity {
         categories = findViewById(R.id.groupSpinner);
         save = findViewById(R.id.saveGroup);
         db = FirebaseFirestore.getInstance();
+
+        adView = findViewById(R.id.adView);
+
+        interstitialAd = new InterstitialAd(this);
+        interstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        interstitialAd.loadAd(new AdRequest.Builder().build());
+        interstitialAd.setAdListener(new AdListener(){
+
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                interstitialAd.show();
+
+            }
+        });
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.item_spinner, spinnerCategory);
         categories.setAdapter(adapter);

@@ -5,15 +5,17 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
-import com.afollestad.materialdialogs.MaterialDialog;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -29,6 +31,8 @@ public class viewCategories extends AppCompatActivity {
     ArrayList<Category> mItems = new ArrayList<>();
     private FirebaseFirestore db;
     private ProgressBar progressBar;
+    private AdView adView;
+    private InterstitialAd interstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +42,23 @@ public class viewCategories extends AppCompatActivity {
         gridView = findViewById(R.id.grid);
         db = FirebaseFirestore.getInstance();
         progressBar = findViewById(R.id.progressBar);
+        adView = findViewById(R.id.banner);
 
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
+
+        interstitialAd = new InterstitialAd(this);
+        interstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        interstitialAd.loadAd(new AdRequest.Builder().build());
+        interstitialAd.setAdListener(new AdListener(){
+
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                interstitialAd.show();
+
+            }
+        });
 
         mItems.add(new Category("All", getResources().getDrawable(R.drawable.all)));
         mItems.add(new Category("Buy & Sell", getResources().getDrawable(R.drawable.buy)));
@@ -58,7 +78,7 @@ public class viewCategories extends AppCompatActivity {
         mItems.add(new Category("Science & Tech", getResources().getDrawable(R.drawable.biology)));
         mItems.add(new Category("Sports", getResources().getDrawable(R.drawable.basketball)));
         mItems.add(new Category("Travel & Places", getResources().getDrawable(R.drawable.travel)));
-        //mItems.add(new Category("Medicals", getResources().getDrawable(R.drawable.hospital)));
+        mItems.add(new Category("VIP", getResources().getDrawable(R.drawable.hospital)));
 
         gridView.setAdapter(new CustomAndroidGridViewAdapter(this, mItems));
 
